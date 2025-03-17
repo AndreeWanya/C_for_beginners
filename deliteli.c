@@ -13,20 +13,21 @@ int main()
 }
 
 void simpleFactors(unsigned int a, unsigned int last, unsigned int n) {
-    if (a % last == 0) {
-        printFactor(last, n);
+    while (a % last == 0) {
         a = a / last;
         n++;
-    } else if ((a % last != 0) && (a != 1)) {
+    }
+    if (a < last) {
         printFactor(last, n);
-        last++;
-        n = 0;
-        
-    } else if (a == 1) {
         return;
     }
+    last++;
+    int m = n;
+    n = 0;
     simpleFactors(a, last, n);
-    //printFactor(last, n);
+    last--;
+    n = m;
+    printFactor(last, n);
 }
 
 void printFactor(unsigned int last, unsigned int n) {
